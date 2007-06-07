@@ -1,0 +1,22 @@
+index_title=SQLite Databases
+index_db=Database to query
+index_sql=SQL to execute
+index_ok=Execute SQL
+index_ecannot=You are not allowed to access this database
+index_exec=Executing SQL $1 ..
+index_eopen=Failed to open database : $1
+index_esql=SQL failed : $1
+index_none=Command executed successfully, and $1 rows were effected.
+index_norows=No rows were returned.
+
+feat_name=SQLite Databases
+feat_echeck=The command $1 needed to create SQLite databases is not installed.
+feat_losing=All SQLite databases owned by this virtual server will be deleted.
+feat_label=Allow SQLite databases?
+feat_eunix=SQLite databases cannot be created in a server without a Unix user
+feat_edir=SQLite databases cannot be created in a server without a home directory
+
+db_name=SQLite
+db_creating=Creating SQLite database $1 ..
+db_deleting=Deleting SQLite database $1 ..
+db_failed=.. failed! : $1
