@@ -1,6 +1,7 @@
 #!/usr/local/bin/perl
 # Show a form for executing SQL
 
+$unsafe_index_cgi = 1;
 require './virtualmin-sqlite-lib.pl';
 &ui_print_header(undef, $text{'index_title'}, "", undef, 0, 1);
 %access = &get_module_acl();
@@ -32,7 +33,8 @@ print &ui_form_end([ [ "ok", $text{'index_ok'} ] ]);
 if ($in{'sql'} && $in{'db'}) {
 	# Show results
 	print "<hr>\n";
-	print &text('index_exec', "<tt>$in{'sql'}</tt>"),"<p>\n";
+	print &text('index_exec',
+		    "<tt>".&html_escape($in{'sql'})."</tt>"),"<p>\n";
 	if (@dirs) {
 		$ok = 0;
 		foreach $dir (@dirs) {
