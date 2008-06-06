@@ -1,5 +1,5 @@
 desc=Virtualmin SQLlite Databases
-depends=virtual-server/2.608
+depends=virtual-server/2.608 1.420
 category=servers
 perldepends=DBI DBD::SQLite2
-version=1.2
+version=1.3

@@ -75,17 +75,8 @@ if ($in{'sql'} && $in{'db'}) {
 	$dbh->disconnect();
 
 	# Print output
-	if (@titles) {
-		print &ui_columns_start(\@titles);
-		foreach $r (@rows) {
-			print &ui_columns_row($r);
-			}
-		print &ui_columns_end();
-		print "<b>$text{'index_norows'}</b><p>\n" if (!@rows);
-		}
-	else {
-		print "<b>",&text('index_none', int($rv)),"</b><p>\n";
-		}
+	print &ui_columns_table(\@titles, undef, \@rows, undef, 0, undef,
+			        &text('index_none', int($rv)));
 	}
 
 &ui_print_footer("/", $text{'index'});
