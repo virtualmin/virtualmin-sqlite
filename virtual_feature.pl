@@ -29,7 +29,7 @@ return $text{'feat_label'};
 # or an error message if not
 sub feature_check
 {
-return &has_command("sqlite") ? undef : &text('feat_echeck', "<tt>sqlite</tt>");
+return &get_sqlite_command() ? undef : &text('feat_echeck', "<tt>sqlite</tt>");
 }
 
 # feature_depends(&domain)
@@ -143,8 +143,9 @@ sub database_create
 {
 local $file = "$_[0]->{'home'}/$_[1].sqlite";
 &$virtual_server::first_print(&text('db_creating', "<tt>$file</tt>"));
+local $sqlite = &get_sqlite_command();
 local $cmd = &command_as_user($_[0]->{'user'}, 0,
-			      "echo .tables | sqlite ".quotemeta($file));
+			      "echo .tables | $sqlite ".quotemeta($file));
 local $out = &backquote_logged("$cmd 2>&1 </dev/null");
 if ($?) {
 	&$virtual_server::second_print(&text('db_failed', "<tt>$out</tt>"));
@@ -177,8 +178,9 @@ sub database_size
 {
 local $file = "$_[0]->{'home'}/$_[1].sqlite";
 local @st = stat($file);
+local $sqlite = &get_sqlite_command();
 local $cmd = &command_as_user($_[0]->{'user'}, 0,
-			      "echo .tables | sqlite ".quotemeta($file));
+			      "echo .tables | $sqlite ".quotemeta($file));
 &open_execute_command(OUT, $cmd, 1);
 while(<OUT>) {
 	s/\r|\n//g;
