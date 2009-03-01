@@ -1,8 +1,12 @@
 # Functions for the SQLite database
 
-do '../web-lib.pl';
+BEGIN { push(@INC, ".."); };
+eval "use WebminCore;";
+if ($@) {
+	do '../web-lib.pl';
+	do '../ui-lib.pl';
+	}
 &init_config();
-do '../ui-lib.pl';
 
 sub databases_in_dir
 {
