@@ -47,7 +47,7 @@ if ($in{'sql'} && $in{'db'}) {
 		# Switch to a non-root user
 		$user = $access{'user'} eq "*" ? $remote_user : $access{'user'};
 		@uinfo = getpwnam($user);
-		if (length(@uinfo)) {
+		if (scalar(@uinfo)) {
 			($(, $)) = ( $uinfo[3],
 				     "$uinfo[3] ".join(" ", $uinfo[3],
 					       &other_groups($uinfo[0])) );
