@@ -1,0 +1,15 @@
+db_creating=Vytváøím SQLite databázi $1 ..
+db_deleting=Odstraòuji SQLite databázi $1 ..
+db_failed=.. chyba! : $!
+feat_losing=V¹echny SQLite databáze vlastnìné tímto virtuálním serverem budou odstranìny.
+feat_name=Databáze SQLite
+index_db=Dotaz na databázi
+index_ecannot=Nemáte oprávnìní k pøístupu do této databáze
+index_eopen=Nepodaøilo se otevøít databázi : $1
+index_esql=chyba : $1
+index_exec=Spou¹tím $1 ..
+index_none=Pøíkaz byl úspì¹nì spu¹tìn a $1 øádkù bylo ovlivnìno.
+index_norows=Nebyly vráceny ¾ádné øádky.
+index_ok=Vykonat
+index_sql=SQL pøíkaz
+index_title=Databáze SQLite
