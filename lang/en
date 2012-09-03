@@ -13,6 +13,7 @@ feat_name=SQLite Databases
 feat_echeck=The command $1 needed to create SQLite databases is not installed.
 feat_losing=All SQLite databases owned by this virtual server will be deleted.
 feat_label=Allow SQLite databases?
+feat_label2=SQLite databases
 feat_eunix=SQLite databases cannot be created in a server without a Unix user
 feat_edir=SQLite databases cannot be created in a server without a home directory
 
