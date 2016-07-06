@@ -1,4 +1,8 @@
 # Defines functions for this feature
+use strict;
+use warnings;
+our (%text);
+our $module_name;
 
 do 'virtualmin-sqlite-lib.pl';
 
@@ -21,7 +25,7 @@ return $text{'feat_losing'};
 # editing form
 sub feature_label
 {
-local ($edit) = @_;
+my ($edit) = @_;
 return $edit ? $text{'feat_label2'} : $text{'feat_label'};
 }
 
@@ -84,7 +88,7 @@ sub feature_delete
 # the Webmin user when this feature is enabled
 sub feature_webmin
 {
-local @doms = grep { $_->{$module_name} }  @{$_[1]};
+my @doms = grep { $_->{$module_name} }  @{$_[1]};
 if (@doms) {
 	return ( [ $module_name,
 		   { 'dir' => join("\t", map { $_->{'home'} } @doms),
@@ -106,7 +110,7 @@ return $text{'db_name'};
 # Returns a list of databases owned by a domain, according to this plugin
 sub database_list
 {
-local @rv;
+my @rv;
 foreach my $db (split(/\s+/, $_[0]->{'db_'.$module_name})) {
 	push(@rv, { 'name' => $db,
 		    'type' => $module_name,
@@ -125,7 +129,7 @@ sub databases_all
 if ($_[0]) {
 	return &databases_in_dir($_[0]->{'home'});
 	}
-else {	
+else {
 	return ( );
 	}
 }
@@ -142,17 +146,17 @@ return -r "$_[0]->{'home'}/$_[1].sqlite";
 # report progress
 sub database_create
 {
-local $file = "$_[0]->{'home'}/$_[1].sqlite";
+my $file = "$_[0]->{'home'}/$_[1].sqlite";
 &$virtual_server::first_print(&text('db_creating', "<tt>$file</tt>"));
-local $sqlite = &get_sqlite_command();
-local $cmd = &command_as_user($_[0]->{'user'}, 0,
+my $sqlite = &get_sqlite_command();
+my $cmd = &command_as_user($_[0]->{'user'}, 0,
 			      "echo .tables | $sqlite ".quotemeta($file));
-local $out = &backquote_logged("$cmd 2>&1 </dev/null");
+my $out = &backquote_logged("$cmd 2>&1 </dev/null");
 if ($?) {
 	&$virtual_server::second_print(&text('db_failed', "<tt>$out</tt>"));
 	}
 else {
-	local @dbs = split(/\s+/, $_[0]->{'db_'.$module_name});
+	my @dbs = split(/\s+/, $_[0]->{'db_'.$module_name});
 	push(@dbs, $_[1]);
 	$_[0]->{'db_'.$module_name} = join(" ", @dbs);
 	&$virtual_server::second_print($virtual_server::text{'setup_done'});
@@ -164,25 +168,28 @@ else {
 # report progress
 sub database_delete
 {
-local $file = "$_[0]->{'home'}/$_[1].sqlite";
+my $file = "$_[0]->{'home'}/$_[1].sqlite";
 &$virtual_server::first_print(&text('db_deleting', "<tt>$file</tt>"));
 unlink($file);
-local @dbs = split(/\s+/, $_[0]->{'db_'.$module_name});
+my @dbs = split(/\s+/, $_[0]->{'db_'.$module_name});
 @dbs = grep { $_ ne $_[1] } @dbs;
 $_[0]->{'db_'.$module_name} = join(" ", @dbs);
 &$virtual_server::second_print($virtual_server::text{'setup_done'});
 }
 
-# database_size(&domain, dbname) 
+# database_size(&domain, dbname)
 # Returns the on-disk size and number of tables in a database
 sub database_size
 {
-local $file = "$_[0]->{'home'}/$_[1].sqlite";
-local @st = stat($file);
-local $sqlite = &get_sqlite_command();
-local $cmd = &command_as_user($_[0]->{'user'}, 0,
+my $file = "$_[0]->{'home'}/$_[1].sqlite";
+my @st = stat($file);
+my $sqlite = &get_sqlite_command();
+my $cmd = &command_as_user($_[0]->{'user'}, 0,
 			      "echo .tables | $sqlite ".quotemeta($file));
+no strict "subs";
 &open_execute_command(OUT, $cmd, 1);
+use strict "subs";
+my $tables;
 while(<OUT>) {
 	s/\r|\n//g;
 	$tables++ if (/^\S+$/);
@@ -192,4 +199,3 @@ return ($st[7], $tables);
 }
 
 1;
-

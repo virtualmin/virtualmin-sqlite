@@ -1,4 +1,8 @@
 # Functions for the SQLite database
+use strict;
+use warnings;
+our %text;
+our $module_name;
 
 BEGIN { push(@INC, ".."); };
 eval "use WebminCore;";
@@ -6,7 +10,7 @@ eval "use WebminCore;";
 
 sub databases_in_dir
 {
-local @rv;
+my @rv;
 opendir(DIR, $_[0]);
 while(my $f = readdir(DIR)) {
 	if ($f =~ /^(\S+)\.sqlite$/) {
@@ -26,11 +30,10 @@ return @rv;
 sub get_sqlite_command
 {
 foreach my $c ("sqlite", "sqlite4", "sqlite3", "sqlite2", "sqlite1") {
-	local $p = &has_command($c);
+	my $p = &has_command($c);
 	return $p if ($p);
 	}
 return undef;
 }
 
 1;
-
