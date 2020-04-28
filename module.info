@@ -4,4 +4,3 @@ category=servers
 perldepends=DBI DBD::SQLite2
 version=1.6
 feedback=jcameron@webmin.com
-desc_nl=Virtualmin SQLlite Databasen
