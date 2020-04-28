@@ -1,0 +1,15 @@
+index_title=Databáze SQLite
+index_db=Dotaz na databázi
+index_sql=SQL příkaz
+index_ok=Vykonat
+index_ecannot=Nemáte oprávnění k přístupu do této databáze
+index_exec=Spouštím $1 ..
+index_eopen=Nepodařilo se otevřít databázi : $1
+index_esql=chyba : $1
+index_none=Příkaz byl úspěšně spuštěn a $1 řádků bylo ovlivněno.
+index_norows=Nebyly vráceny žádné řádky.
+feat_name=Databáze SQLite
+feat_losing=Všechny SQLite databáze vlastněné tímto virtuálním serverem budou odstraněny.
+db_creating=Vytvářím SQLite databázi $1 ..
+db_deleting=Odstraňuji SQLite databázi $1 ..
+db_failed=.. chyba! : $!

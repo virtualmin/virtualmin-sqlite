@@ -1,0 +1,6 @@
+feat_echeck=Příkaz $1 potřebný k vytvoření databází SQLite není nainstalován.
+feat_label=Povolit databáze SQLite?
+feat_label2=SQLite databáze
+feat_eunix=Databáze SQLite nelze na serveru vytvořit bez uživatele Unixu
+feat_edir=Databáze SQLite nelze vytvořit na serveru bez domovského adresáře
+db_name=SQLite
