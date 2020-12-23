@@ -1,0 +1,24 @@
+index_title=Bases de données SQLite
+index_db=Base de données à interroger
+index_sql=SQL à exécuter
+index_ok=Exécuter SQL
+index_ecannot=Vous n'êtes pas autorisé à accéder à cette base de données
+index_exec=Exécution de SQL $1 ..
+index_eopen=Impossible d'ouvrir la base de données : $1 
+index_esql=Échec de SQL : $1 
+index_none=La commande a été exécutée avec succès et $1 lignes ont été effectuées.
+index_norows=Aucune ligne n'a été renvoyée.
+
+feat_name=Bases de données SQLite
+feat_echeck=La commande $1 nécessaire pour créer des bases de données SQLite n'est pas installée.
+feat_losing=Toutes les bases de données SQLite appartenant à ce serveur virtuel seront supprimées.
+feat_label=Autoriser les bases de données SQLite?
+feat_label2=Bases de données SQLite
+feat_eunix=Les bases de données SQLite ne peuvent pas être créées sur un serveur sans utilisateur Unix
+feat_edir=Les bases de données SQLite ne peuvent pas être créées sur un serveur sans répertoire de base
+
+db_name=SQLite
+db_creating=Création de la base de données SQLite $1 ...
+db_deleting=Suppression de la base de données SQLite $1 ...
+db_failed=.. échoué! : $1
+__norefs=1
