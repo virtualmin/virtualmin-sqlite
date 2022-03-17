@@ -110,13 +110,14 @@ return $text{'db_name'};
 # Returns a list of databases owned by a domain, according to this plugin
 sub database_list
 {
+my ($d) = @_;
 my @rv;
-foreach my $db (split(/\s+/, $_[0]->{'db_'.$module_name})) {
+foreach my $db (split(/\s+/, $d->{'db_'.$module_name} || "")) {
 	push(@rv, { 'name' => $db,
 		    'type' => $module_name,
 		    'desc' => &database_name(),
 		    'link' => "/$module_name/index.cgi?db=".
-				&urlize("$_[0]->{'home'}/$db.sqlite") });
+				&urlize("$d->{'home'}/$db.sqlite") });
 	}
 return @rv;
 }
