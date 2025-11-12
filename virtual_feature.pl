@@ -112,7 +112,7 @@ sub database_list
 {
 my ($d) = @_;
 my @rv;
-foreach my $db (split(/\s+/, $d->{'db_'.$module_name} || "")) {
+foreach my $db (split(/\s+/, $d->{'db_'.$module_name} // "")) {
 	push(@rv, { 'name' => $db,
 		    'type' => $module_name,
 		    'desc' => &database_name(),
